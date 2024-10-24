@@ -4,20 +4,20 @@ metadata:
   name: {{ .Chart.Name }}-deployment
   namespace: {{ .Values.namespace }}
   labels:
-    app: sound-sphere-auth
+    app: sound-sphere-products
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: sound-sphere-auth
+      app: sound-sphere-products
   template:
     metadata:
       labels:
-        app: sound-sphere-auth
+        app: sound-sphere-products
     spec:
       containers:
-        - name: sound-sphere-auth
-          image: nachappr/sound-sphere-auth
+        - name: sound-sphere-products
+          image: nachappr/sound-sphere-products
           livenessProbe: {{ toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe: {{ toYaml .Values.readinessProbe | nindent 12 }}
           ports:
@@ -36,7 +36,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: sound-sphere-auth
+    app: sound-sphere-products
   ports:
     - name: {{ .Values.service.name }}
       protocol: {{ .Values.service.protocol }}
